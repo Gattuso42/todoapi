@@ -1,10 +1,10 @@
 package com.gattuso.todoapi.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -19,12 +19,14 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-    @Column(name = "title")
+    @Column(name = "title",nullable = false)
     private String title;
-    @Column(name = "description")
+    @Column(name = "description",nullable = false)
     private String description;
-    @Column(name = "status")
+    @Column(name = "status",nullable = false)
     private String status;
     @Column(name = "duedate")
-    private Date dueDate;
+    @NonNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dueDate;
 }
