@@ -3,6 +3,7 @@ package com.gattuso.todoapi.controller;
 
 import com.gattuso.todoapi.model.Task;
 import com.gattuso.todoapi.service.TaskService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +30,7 @@ public class TaskController {
     }
 //  Create a task
     @PostMapping("/task")
-    ResponseEntity<Task> saveTask(@RequestBody Task task) {
+    ResponseEntity<Task> saveTask(@Valid @RequestBody Task task) {
         taskService.saveTask(task);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -40,12 +41,12 @@ public class TaskController {
     }
 //  Upgrade a status task
     @PutMapping("/task/status/{id}/{status}")
-    ResponseEntity<Task> upgradeTaskStatus(Long id,@PathVariable boolean status) {
+    ResponseEntity<Task> upgradeTaskStatus(@PathVariable Long id,@PathVariable boolean status) {
         return new ResponseEntity<>(taskService.upgradeTaskStatus(id,status),HttpStatus.OK);
     }
 //  Delete a task
     @DeleteMapping("/task/{id}")
-    ResponseEntity<Task> deleteTask(Long id) {
+    ResponseEntity<Task> deleteTask(@PathVariable Long id) {
         taskService.deleteTask(id);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
