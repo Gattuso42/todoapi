@@ -36,7 +36,7 @@ public class TaskController {
     }
 //  Upgrade a task
     @PutMapping("/task/{id}")
-    ResponseEntity<Task> upgradeTask(@RequestBody Task task,@PathVariable Long id) {
+    ResponseEntity<Task> upgradeTask(@Valid @RequestBody Task task,@PathVariable Long id) {
         return new ResponseEntity<>(taskService.upgradeTask(task,id),HttpStatus.OK);
     }
 //  Upgrade a status task
