@@ -14,7 +14,7 @@ import java.util.Optional;
 @Service
 public class TaskServiceImpl implements TaskService {
 
-    TaskRepository taskRepository;
+    private TaskRepository taskRepository;
 
 
     @Override

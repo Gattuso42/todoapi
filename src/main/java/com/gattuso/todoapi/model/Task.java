@@ -39,4 +39,5 @@ public class Task {
     @Column(name = "duedate")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dueDate;
+
 }

@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping("/todoapi")
 public class TaskController {
 
-    TaskService taskService;
+    private TaskService taskService;
 
 //  Read a task
     @GetMapping("/task/{id}")
