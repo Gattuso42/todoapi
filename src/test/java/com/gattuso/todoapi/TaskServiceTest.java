@@ -3,21 +3,14 @@ package com.gattuso.todoapi;
 
 import com.gattuso.todoapi.model.Task;
 import com.gattuso.todoapi.repository.TaskRepository;
-import com.gattuso.todoapi.service.TaskService;
 import com.gattuso.todoapi.service.TaskServiceImpl;
 import jakarta.persistence.EntityNotFoundException;
-import lombok.AllArgsConstructor;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -65,6 +58,7 @@ public class TaskServiceTest {
 
     }
 
+
     @Test(expected = EntityNotFoundException.class)
     public void getTaskTest(){
         when(taskRepository.findTaskById(1L)).thenReturn(
@@ -83,8 +77,9 @@ public class TaskServiceTest {
         assertEquals(dateTest,taskResult.getDueDate());
 
 
-        Task taskResult2 = taskService.getTask(2L);
+        taskService.getTask(2L);
     }
+
 
     @Test
     public void saveTaskTestSuccess(){
@@ -92,6 +87,7 @@ public class TaskServiceTest {
         taskService.saveTask(taskSample);
         verify(taskRepository,times(1)).save(taskSample);
     }
+
 
     @Test
     public void updateTaskSuccessTest(){
